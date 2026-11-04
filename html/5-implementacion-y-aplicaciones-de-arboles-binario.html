@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mw2q2ovs-nq5mmf1x0">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>5. Implementación y aplicaciones de árboles binarios en Python | 2. Estructura Árbol Binario</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mw2q2ovs-nq5mmf1x0" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/1-fundamentos-de-los-arboles-binarios.html" class="no-ch">1. Fundamentos de los árboles binarios</a>
+</li>
+<li> <a href="../html/2-tipos-y-representacion-de-arboles-binarios.html" class="no-ch">2. Tipos y representación de árboles binarios</a>
+</li>
+<li> <a href="../html/3-operaciones-fundamentales-de-los-arboles-binario.html" class="no-ch">3. Operaciones fundamentales de los árboles binarios</a>
+</li>
+<li> <a href="../html/4-recorridos-de-arboles-binarios.html" class="no-ch">4. Recorridos de árboles binarios</a>
+</li>
+<li class="active"> <a href="../html/5-implementacion-y-aplicaciones-de-arboles-binario.html" class="active no-ch">5. Implementación y aplicaciones de árboles binarios en Python</a>
+</li>
+<li> <a href="../html/repaso-estructura-arbol-binario.html" class="no-ch">Repaso: Estructura Árbol Binario</a>
+</li>
+</ul>
+</nav><main id="page-mw2q2ovs-nq5mmf1x0" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">2. Estructura Árbol Binario</p></div>
+<div class="page-header"><h1 class="page-title">5. Implementación y aplicaciones de árboles binarios en Python</h1></div>
+</header><div id="page-content-page-mw2q2ovs-nq5mmf1x0" class="page-content">
+<article id="block-mw2r505g-rjdag9fid" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Contenido</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1793835160323-bi0dk83q8" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1793835160323-bi0dk83q8&quot;}">
+<div class="exe-text-template">
+    <div style="font-family: Arial, Helvetica, sans-serif; color: #1f2937; line-height: 1.65; max-width: 1200px; margin: 0 auto;"><!-- ENCABEZADO PRINCIPAL -->
+<div style="background: #3B82F6; color: #ffffff; padding: 26px 30px; border-radius: 10px; margin-bottom: 24px;">
+<div style="display: inline-block; background: #FBBF24; color: #1f2937; padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 12px;">Estructuras de datos no lineales</div>
+<h2 style="margin: 0 0 10px; color: #ffffff; font-size: 29px; font-weight: 600;">Implementación y aplicaciones de árboles binarios en Python</h2>
+<p style="margin: 0; color: #ffffff; font-size: 17px;">Construir y manipular árboles binarios mediante clases en Python, implementando operaciones de búsqueda, inserción, eliminación y aplicaciones prácticas.</p>
+</div>
+<!-- INTRODUCCIÓN -->
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; border-left: 6px solid #10B981; padding: 20px 24px; border-radius: 8px; margin-bottom: 30px;">
+<h3 style="color: #1f2937; margin: 0 0 12px; font-size: 22px;">Introducción</h3>
+<p>Los <strong>árboles binarios</strong> son estructuras de datos no lineales que permiten organizar información mediante relaciones jerárquicas entre nodos. Su implementación en Python facilita el desarrollo de programas capaces de almacenar, consultar y procesar datos dinámicamente.</p>
+<p>Después de estudiar sus fundamentos, tipos, operaciones y recorridos, es posible integrar estos conocimientos mediante la programación orientada a objetos.</p>
+<p>En este contenido se utilizará principalmente el <strong>árbol binario de búsqueda (BST)</strong>, que organiza valores mediante reglas de comparación.</p>
+<p style="margin-bottom: 0;">También se estudiarán aplicaciones relacionadas con la gestión de registros, la representación de expresiones matemáticas y los procesos de decisión.</p>
+</div>
+<!-- 5.1 CLASE NODE -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.1 Creación de una clase Node</h3>
+<p>En Python, un árbol binario puede implementarse mediante clases y objetos. Cada nodo se representa como un objeto que almacena información y mantiene referencias hacia sus posibles hijos.</p>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0; font-size: 18px;">La clase <strong>Node</strong> representa la unidad básica de un árbol binario. Cada objeto contiene un valor y dos referencias: una hacia el hijo izquierdo y otra hacia el hijo derecho.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Estructura de un nodo</h4>
+<div style="overflow-x: auto; margin: 18px 0;">
+<table style="width: 100%; border-collapse: collapse; min-width: 480px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Atributo</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>value</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Almacena el valor o información del nodo.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>left</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Referencia hacia el hijo izquierdo.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>right</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Referencia hacia el hijo derecho.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Implementación de la clase Node</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None</code></pre>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px 24px; border-radius: 9px;"><strong>Explicación del código</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li><code>class Node</code> define la clase que representa los nodos.</li>
+<li><code>__init__()</code> inicializa los atributos del objeto.</li>
+<li><code>self.value</code> almacena el valor recibido.</li>
+<li><code>self.left</code> representa la referencia hacia el hijo izquierdo.</li>
+<li><code>self.right</code> representa la referencia hacia el hijo derecho.</li>
+<li><code>None</code> indica que no existe un hijo en esa posición.</li>
+</ul>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Creación de un nodo</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>node = Node(50)
+
+print(&quot;Valor:&quot;, node.value)
+print(&quot;Hijo izquierdo:&quot;, node.left)
+print(&quot;Hijo derecho:&quot;, node.right)</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Resultado esperado</h4>
+<pre style="background: #111827; color: #d1fae5; padding: 20px; border-radius: 9px; font-family: Consolas, Monaco, monospace; font-size: 14px; overflow: auto;"><code>Valor: 50
+Hijo izquierdo: None
+Hijo derecho: None</code></pre>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 360 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nodo 50 con referencias left y right inicializadas en None" style="width: 100%; max-width: 460px; height: auto;"> <rect x="112" y="12" width="136" height="44" rx="9" fill="#3B82F6"></rect> <text x="180" y="40" fill="#FFFFFF" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold">Node: 50</text> <g stroke="#94A3B8" stroke-width="3"> <line x1="155" y1="56" x2="92" y2="110"></line> <line x1="205" y1="56" x2="268" y2="110"></line> </g> <rect x="15" y="110" width="150" height="42" rx="8" fill="#EFF6FF" stroke="#93C5FD"></rect> <rect x="195" y="110" width="150" height="42" rx="8" fill="#ECFDF5" stroke="#A7F3D0"></rect> <g fill="#1F2937" font-family="Arial" font-size="15" text-anchor="middle"> <text x="90" y="137">left = None</text> <text x="270" y="137">right = None</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280; margin: 12px 0 0;">Figura 1. Representación de un nodo con sus referencias iniciales.</p>
+</div>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px;">La clase <code>Node</code> permite crear tantos nodos como sean necesarios y establecer conexiones entre ellos para construir estructuras jerárquicas.</div>
+</section>
+<!-- 5.2 CLASE BINARYTREE -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.2 Implementación de una clase BinaryTree</h3>
+<p>La clase <code>Node</code> permite crear elementos individuales. Sin embargo, para administrar una estructura completa resulta conveniente implementar una clase que mantenga la referencia de la raíz y proporcione las operaciones necesarias.</p>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 20px 24px; border-radius: 9px; margin: 20px 0;">
+<p style="margin: 0;">La clase <strong>BinaryTree</strong> administra los nodos del árbol. En esta implementación se utilizarán las reglas de un árbol binario de búsqueda con valores numéricos únicos.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Estructura de la clase</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>class BinaryTree:
+    def __init__(self):
+        self.root = None</code></pre>
+<p>El atributo <code>root</code> almacena la referencia hacia la raíz del árbol. Inicialmente contiene <code>None</code>, porque todavía no existen nodos.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Creación de un árbol vacío</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>tree = BinaryTree()
+
+print(tree.root)</code></pre>
+<div style="background: #111827; color: #d1fae5; padding: 16px 20px; border-radius: 8px; font-family: Consolas, Monaco, monospace;">None</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Incorporación del método insert()</h4>
+<p>El método de inserción utiliza las reglas de comparación del BST para determinar la posición de cada nuevo valor.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        self.root = self._insert(
+            self.root, value
+        )
+
+    def _insert(self, node, value):
+        if node is None:
+            return Node(value)
+
+        if value &lt; node.value:
+            node.left = self._insert(
+                node.left, value
+            )
+
+        elif value &gt; node.value:
+            node.right = self._insert(
+                node.right, value
+            )
+
+        return node</code></pre>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px 24px; border-radius: 9px; margin: 20px 0;"><strong>Funcionamiento de insert()</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li>Recibe el valor que se desea almacenar.</li>
+<li>Compara el valor con los nodos existentes.</li>
+<li>Si es menor, continúa hacia el subárbol izquierdo.</li>
+<li>Si es mayor, continúa hacia el subárbol derecho.</li>
+<li>Cuando encuentra una referencia vacía, crea un nuevo nodo.</li>
+<li>Los valores duplicados no se incorporan en esta implementación.</li>
+</ul>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo de uso</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>tree = BinaryTree()
+
+tree.insert(50)
+tree.insert(30)
+tree.insert(70)
+
+print(&quot;Raíz:&quot;, tree.root.value)
+print(&quot;Izquierda:&quot;, tree.root.left.value)
+print(&quot;Derecha:&quot;, tree.root.right.value)</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Resultado esperado</h4>
+<pre style="background: #111827; color: #d1fae5; padding: 20px; border-radius: 9px; font-family: Consolas, Monaco, monospace; font-size: 14px; overflow: auto;"><code>Raíz: 50
+Izquierda: 30
+Derecha: 70</code></pre>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario con raíz 50, hijo izquierdo 30 e hijo derecho 70" style="width: 100%; max-width: 420px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="170" y1="38" x2="80" y2="125"></line> <line x1="170" y1="38" x2="260" y2="125"></line> </g> <circle cx="170" cy="38" r="26" fill="#3B82F6"></circle> <circle cx="80" cy="125" r="25" fill="#10B981"></circle> <circle cx="260" cy="125" r="25" fill="#10B981"></circle> <g fill="#FFFFFF" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle"> <text x="170" y="45">50</text> <text x="80" y="132">30</text> <text x="260" y="132">70</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 2. Árbol construido mediante BinaryTree.</p>
+</div>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px;">Separar las clases <code>Node</code> y <code>BinaryTree</code> facilita la organización, reutilización y ampliación del código.</div>
+</section>
+<!-- 5.3 MANIPULACIÓN -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.3 Construcción y manipulación de árboles binarios</h3>
+<p>La manipulación de árboles binarios comprende las operaciones necesarias para insertar, buscar, recorrer y eliminar elementos. Estas operaciones permiten administrar dinámicamente la información almacenada.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Inserción de varios elementos</h4>
+<p>Se utilizarán los siguientes valores:</p>
+<div style="background: #1F2937; color: #ffffff; padding: 18px; border-radius: 9px; font-size: 19px; font-weight: bold; text-align: center;">50   30   70   20   40   60   80</div>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>tree = BinaryTree()
+
+values = [50, 30, 70, 20, 40, 60, 80]
+
+for value in values:
+    tree.insert(value)</code></pre>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 400 245" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario de búsqueda de siete valores" style="width: 100%; max-width: 480px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="200" y1="38" x2="105" y2="115"></line> <line x1="200" y1="38" x2="295" y2="115"></line> <line x1="105" y1="115" x2="45" y2="208"></line> <line x1="105" y1="115" x2="150" y2="208"></line> <line x1="295" y1="115" x2="250" y2="208"></line> <line x1="295" y1="115" x2="355" y2="208"></line> </g> <circle cx="200" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="105" cy="115" r="25" fill="#10B981"></circle> <circle cx="295" cy="115" r="25" fill="#10B981"></circle> <g fill="#475569"> <circle cx="45" cy="208" r="23"></circle> <circle cx="150" cy="208" r="23"></circle> <circle cx="250" cy="208" r="23"></circle> <circle cx="355" cy="208" r="23"></circle> </g> <g fill="#FFFFFF" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="200" y="44">50</text><text x="105" y="121">30</text> <text x="295" y="121">70</text><text x="45" y="214">20</text> <text x="150" y="214">40</text><text x="250" y="214">60</text> <text x="355" y="214">80</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 3. Árbol binario de búsqueda con siete valores.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Implementación de la búsqueda</h4>
+<p>El método <code>search()</code> determina si un valor existe dentro del árbol utilizando comparaciones sucesivas.</p>
+<p>Los siguientes métodos se incorporan a la clase <code>BinaryTree</code>.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>def search(self, value):
+    current = self.root
+
+    while current is not None:
+        if value == current.value:
+            return True
+
+        if value &lt; current.value:
+            current = current.left
+        else:
+            current = current.right
+
+    return False</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo de búsqueda</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>print(tree.search(40))
+print(tree.search(90))</code></pre>
+<pre style="background: #111827; color: #d1fae5; padding: 18px; border-radius: 8px; font-family: Consolas, Monaco, monospace;"><code>True
+False</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 28px;">Implementación del recorrido inorden</h4>
+<p>El método <code>inorder()</code> permite obtener una lista con todos los valores almacenados en el BST en orden ascendente.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>def inorder(self):
+    result = []
+    self._inorder(self.root, result)
+    return result
+
+def _inorder(self, node, result):
+    if node is not None:
+        self._inorder(node.left, result)
+        result.append(node.value)
+        self._inorder(node.right, result)</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo de uso</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>print(tree.inorder())</code></pre>
+<pre style="background: #111827; color: #d1fae5; padding: 18px; border-radius: 8px; font-family: Consolas, Monaco, monospace; overflow: auto;"><code>[20, 30, 40, 50, 60, 70, 80]</code></pre>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px; margin-top: 18px;">Este método devuelve una lista que puede utilizarse posteriormente en otras operaciones, a diferencia de una función que únicamente muestra los valores mediante <code>print()</code>.</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 28px;">Implementación de la eliminación</h4>
+<p>El método <code>delete()</code> permite retirar un nodo y mantener las propiedades del BST, considerando si posee cero, uno o dos hijos.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>def delete(self, value):
+    self.root = self._delete(
+        self.root, value
+    )
+
+def _delete(self, node, value):
+    if node is None:
+        return None
+
+    if value &lt; node.value:
+        node.left = self._delete(
+            node.left, value
+        )
+
+    elif value &gt; node.value:
+        node.right = self._delete(
+            node.right, value
+        )
+
+    else:
+        if node.left is None:
+            return node.right
+
+        if node.right is None:
+            return node.left
+
+        successor = node.right
+
+        while successor.left is not None:
+            successor = successor.left
+
+        node.value = successor.value
+
+        node.right = self._delete(
+            node.right, successor.value
+        )
+
+    return node</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo de eliminación</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 22px;"><code>tree.delete(30)
+
+print(tree.inorder())</code></pre>
+<pre style="background: #111827; color: #d1fae5; padding: 18px; border-radius: 8px; font-family: Consolas, Monaco, monospace; overflow: auto;"><code>[20, 40, 50, 60, 70, 80]</code></pre>
+<p>El valor 30 se elimina. Como posee dos hijos, se utiliza el sucesor inorden 40 para mantener la organización del árbol.</p>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Operaciones implementadas</h4>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Método</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Operación</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>insert()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Inserción.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Agrega un nuevo nodo.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>search()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Búsqueda.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Devuelve True o False.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>inorder()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Recorrido.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Devuelve una lista ordenada.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>delete()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Eliminación.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Retira un nodo.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 5.4 BST -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.4 Introducción a los árboles binarios de búsqueda (BST)</h3>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0; font-size: 18px;">Un <strong>árbol binario de búsqueda (BST)</strong> es un tipo de árbol binario que organiza sus valores mediante reglas de comparación, facilitando las operaciones de inserción, búsqueda y eliminación.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Propiedades fundamentales</h4>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 15px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Subárbol izquierdo</strong>
+<p style="margin: 8px 0 0;">Contiene valores menores que el nodo actual.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Subárbol derecho</strong>
+<p style="margin: 8px 0 0;">Contiene valores mayores que el nodo actual.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Ordenamiento</strong>
+<p style="margin: 8px 0 0;">El recorrido inorden permite obtener valores ascendentes.</p>
+</div>
+</div>
+<p>Estas propiedades deben cumplirse recursivamente en todos los subárboles del BST.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo: búsqueda del valor 60</h4>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 400 245" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ruta de búsqueda del valor 60 pasando por 50 y 70" style="width: 100%; max-width: 480px; height: auto;"> <g stroke="#CBD5E1" stroke-width="3"> <line x1="200" y1="38" x2="105" y2="115"></line> <line x1="200" y1="38" x2="295" y2="115"></line> <line x1="105" y1="115" x2="45" y2="208"></line> <line x1="105" y1="115" x2="150" y2="208"></line> <line x1="295" y1="115" x2="250" y2="208"></line> <line x1="295" y1="115" x2="355" y2="208"></line> </g> <path d="M200 38 L295 115 L250 208" fill="none" stroke="#FBBF24" stroke-width="6" stroke-linecap="round" opacity="0.85"></path> <circle cx="200" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="105" cy="115" r="25" fill="#475569"></circle> <circle cx="295" cy="115" r="25" fill="#3B82F6"></circle> <circle cx="45" cy="208" r="23" fill="#475569"></circle> <circle cx="150" cy="208" r="23" fill="#475569"></circle> <circle cx="250" cy="208" r="23" fill="#10B981"></circle> <circle cx="355" cy="208" r="23" fill="#475569"></circle> <g fill="#FFFFFF" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="200" y="44">50</text><text x="105" y="121">30</text> <text x="295" y="121">70</text><text x="45" y="214">20</text> <text x="150" y="214">40</text><text x="250" y="214">60</text> <text x="355" y="214">80</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 4. Ruta de búsqueda: 50 → 70 → 60.</p>
+</div>
+<ol style="padding-left: 24px;">
+<li>Se compara 60 con 50. Como es mayor, se continúa hacia la derecha.</li>
+<li>Se compara 60 con 70. Como es menor, se continúa hacia la izquierda.</li>
+<li>Se encuentra el nodo 60 y finaliza la búsqueda.</li>
+</ol>
+<p>En este ejemplo solamente se examinan tres nodos, en lugar de recorrer toda la estructura.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Eficiencia de un BST</h4>
+<div style="overflow-x: auto; margin: 20px 0;">
+<table style="width: 100%; border-collapse: collapse; min-width: 620px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Operación</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">BST con altura logarítmica</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">BST degenerado</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Inserción</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(log n)</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(n)</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Búsqueda</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(log n)</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(n)</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Eliminación</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(log n)</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(n)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo de árbol degenerado</h4>
+<p>Si los valores se insertan en orden ascendente, el BST puede formar una estructura similar a una lista enlazada.</p>
+<div style="background: #1F2937; color: #ffffff; padding: 18px; border-radius: 9px; text-align: center; font-size: 19px; font-weight: bold;">10   20   30   40   50</div>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 330 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario degenerado con valores ascendentes del 10 al 50" style="width: 100%; max-width: 370px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="55" y1="35" x2="105" y2="100"></line> <line x1="105" y1="100" x2="155" y2="165"></line> <line x1="155" y1="165" x2="205" y2="230"></line> <line x1="205" y1="230" x2="255" y2="295"></line> </g> <circle cx="55" cy="35" r="24" fill="#3B82F6"></circle> <circle cx="105" cy="100" r="24" fill="#10B981"></circle> <circle cx="155" cy="165" r="24" fill="#10B981"></circle> <circle cx="205" cy="230" r="24" fill="#10B981"></circle> <circle cx="255" cy="295" r="24" fill="#475569"></circle> <g fill="#FFFFFF" font-size="17" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="55" y="41">10</text><text x="105" y="106">20</text> <text x="155" y="171">30</text><text x="205" y="236">40</text> <text x="255" y="301">50</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 5. BST degenerado por inserción ascendente.</p>
+</div>
+<div style="background: #FFFBEB; border-left: 5px solid #FBBF24; padding: 18px 22px; border-radius: 8px;"><strong>Importante:</strong> un BST convencional no se equilibra automáticamente. Los árboles AVL y rojo-negro son ejemplos de estructuras especializadas que mantienen condiciones de equilibrio.</div>
+</section>
+<!-- 5.5 APLICACIONES -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.5 Aplicaciones en organización y búsqueda de información</h3>
+<p>Los árboles binarios se utilizan en diferentes áreas del desarrollo de software para representar relaciones, clasificar información y facilitar determinados procesos.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; margin: 22px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 20px; border-radius: 9px;"><strong style="color: #1d4ed8;">Búsqueda de registros</strong>
+<p style="margin: 8px 0 0;">Permite organizar claves o identificadores para localizar información mediante comparaciones.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 20px; border-radius: 9px;"><strong style="color: #047857;">Organización de datos</strong>
+<p style="margin: 8px 0 0;">Facilita mantener conjuntos dinámicos de elementos ordenados.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px; border-radius: 9px;"><strong style="color: #92400e;">Expresiones matemáticas</strong>
+<p style="margin: 8px 0 0;">Representa operadores y operandos para evaluar expresiones.</p>
+</div>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 20px; border-radius: 9px;"><strong style="color: #1d4ed8;">Árboles de decisión</strong>
+<p style="margin: 8px 0 0;">Representa decisiones binarias que conducen a diferentes resultados.</p>
+</div>
+</div>
+<h4 style="color: #3b82f6; font-size: 20px;">Aplicación 1. Gestión de identificadores</h4>
+<p>Un sistema puede utilizar un BST para almacenar identificadores numéricos únicos. Cada identificador representa un registro que necesita consultarse posteriormente.</p>
+<div style="background: #1F2937; color: #ffffff; padding: 18px; border-radius: 9px; text-align: center; font-size: 19px; font-weight: bold;">105   80   130   60   95   115   150</div>
+<p>Estos valores pueden organizarse en un BST para facilitar las búsquedas y obtener listados ordenados.</p>
+<h4 style="color: #3b82f6; font-size: 20px; margin-top: 28px;">Aplicación 2. Árboles de expresiones matemáticas</h4>
+<p>Los árboles binarios de expresión representan operadores mediante nodos internos y operandos mediante nodos hoja.</p>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px 22px; border-radius: 8px; text-align: center; font-size: 22px; font-weight: bold; margin: 20px 0;">(5 + 3) × 2</div>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 330 245" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol de expresión matemática que representa cinco más tres multiplicado por dos" style="width: 100%; max-width: 400px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="165" y1="38" x2="90" y2="115"></line> <line x1="165" y1="38" x2="250" y2="115"></line> <line x1="90" y1="115" x2="45" y2="205"></line> <line x1="90" y1="115" x2="135" y2="205"></line> </g> <circle cx="165" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="90" cy="115" r="25" fill="#10B981"></circle> <circle cx="250" cy="115" r="24" fill="#475569"></circle> <circle cx="45" cy="205" r="24" fill="#475569"></circle> <circle cx="135" cy="205" r="24" fill="#475569"></circle> <g fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle"> <text x="165" y="45">×</text><text x="90" y="122">+</text> <text x="250" y="122">2</text><text x="45" y="212">5</text> <text x="135" y="212">3</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 6. Árbol binario de expresión matemática.</p>
+</div>
+<p>Primero se calcula la suma de 5 y 3. Después, el resultado se multiplica por 2.</p>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px; font-size: 19px;"><strong>(5 + 3) × 2 = 16</strong></div>
+<p style="margin-top: 18px;">Estas estructuras se utilizan para representar y procesar expresiones en compiladores, intérpretes y sistemas de cálculo.</p>
+<h4 style="color: #3b82f6; font-size: 20px; margin-top: 28px;">Aplicación 3. Árboles de decisión</h4>
+<p>Los árboles binarios pueden representar procesos donde cada decisión conduce hacia una de dos alternativas.</p>
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; padding: 20px 24px; border-radius: 9px;">
+<p>Una aplicación puede evaluar si una condición se cumple y dirigir el proceso hacia uno de dos posibles resultados.</p>
+<p style="margin-bottom: 0;">Estos árboles se utilizan en sistemas de reglas, clasificación y algoritmos de aprendizaje automático. No necesariamente aplican las reglas de ordenamiento de los BST.</p>
+</div>
+</section>
+<!-- 5.6 CASO PRÁCTICO -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">5.6 Resolución de problemas prácticos utilizando árboles binarios en Python</h3>
+<p>Los árboles binarios permiten resolver problemas relacionados con almacenamiento, organización y búsqueda de información.</p>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<h4 style="color: #1d4ed8; margin: 0 0 10px;">Caso práctico: sistema de gestión de registros</h4>
+<p style="margin: 0;">Una aplicación necesita almacenar identificadores numéricos únicos. El sistema debe permitir registrar nuevos identificadores, buscar registros, eliminar elementos y mostrar los valores ordenados.</p>
+</div>
+<p>Para implementar la solución se utilizará un árbol binario de búsqueda mediante las clases <code>Node</code> y <code>BinaryTree</code>.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Código completo en Python</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        self.root = self._insert(
+            self.root, value
+        )
+
+    def _insert(self, node, value):
+        if node is None:
+            return Node(value)
+
+        if value &lt; node.value:
+            node.left = self._insert(
+                node.left, value
+            )
+
+        elif value &gt; node.value:
+            node.right = self._insert(
+                node.right, value
+            )
+
+        return node
+
+    def search(self, value):
+        current = self.root
+
+        while current is not None:
+            if value == current.value:
+                return True
+
+            if value &lt; current.value:
+                current = current.left
+            else:
+                current = current.right
+
+        return False
+
+    def delete(self, value):
+        self.root = self._delete(
+            self.root, value
+        )
+
+    def _delete(self, node, value):
+        if node is None:
+            return None
+
+        if value &lt; node.value:
+            node.left = self._delete(
+                node.left, value
+            )
+
+        elif value &gt; node.value:
+            node.right = self._delete(
+                node.right, value
+            )
+
+        else:
+            if node.left is None:
+                return node.right
+
+            if node.right is None:
+                return node.left
+
+            successor = node.right
+
+            while successor.left is not None:
+                successor = successor.left
+
+            node.value = successor.value
+
+            node.right = self._delete(
+                node.right, successor.value
+            )
+
+        return node
+
+    def inorder(self):
+        result = []
+        self._inorder(self.root, result)
+        return result
+
+    def _inorder(self, node, result):
+        if node is not None:
+            self._inorder(node.left, result)
+            result.append(node.value)
+            self._inorder(node.right, result)
+
+    def is_empty(self):
+        return self.root is None
+
+
+# Crear el árbol
+tree = BinaryTree()
+
+# Insertar identificadores
+identifiers = [105, 80, 130, 60, 95, 115, 150]
+
+for identifier in identifiers:
+    tree.insert(identifier)
+
+# Mostrar registros
+print(&quot;Registros:&quot;, tree.inorder())
+
+# Buscar identificadores
+print(&quot;Buscar 95:&quot;, tree.search(95))
+print(&quot;Buscar 200:&quot;, tree.search(200))
+
+# Eliminar un identificador
+tree.delete(80)
+
+# Mostrar registros actualizados
+print(&quot;Después de eliminar:&quot;, tree.inorder())
+
+# Verificar si el árbol está vacío
+print(&quot;Árbol vacío:&quot;, tree.is_empty())</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Resultado esperado</h4>
+<pre style="background: #111827; color: #d1fae5; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 20px;"><code>Registros: [60, 80, 95, 105, 115, 130, 150]
+Buscar 95: True
+Buscar 200: False
+Después de eliminar: [60, 95, 105, 115, 130, 150]
+Árbol vacío: False</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Explicación del funcionamiento</h4>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 15px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 20px; border-radius: 8px;"><strong style="color: #1d4ed8;">Creación</strong>
+<p style="margin: 8px 0 0;">Se crea un objeto de la clase BinaryTree, inicialmente vacío.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 20px; border-radius: 8px;"><strong style="color: #047857;">Inserción</strong>
+<p style="margin: 8px 0 0;">Los identificadores se incorporan mediante un ciclo y el método insert().</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px; border-radius: 8px;"><strong style="color: #92400e;">Búsqueda</strong>
+<p style="margin: 8px 0 0;">search() comprueba si existe un identificador y devuelve True o False.</p>
+</div>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 20px; border-radius: 8px;"><strong style="color: #1d4ed8;">Eliminación</strong>
+<p style="margin: 8px 0 0;">delete() retira un registro conservando las reglas del BST.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 20px; border-radius: 8px;"><strong style="color: #047857;">Visualización</strong>
+<p style="margin: 8px 0 0;">inorder() devuelve los identificadores en una lista ordenada.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px; border-radius: 8px;"><strong style="color: #92400e;">Validación</strong>
+<p style="margin: 8px 0 0;">is_empty() determina si el árbol contiene elementos.</p>
+</div>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Ventajas de utilizar un BST</h4>
+<ul style="padding-left: 24px;">
+<li>Permite almacenar identificadores únicos.</li>
+<li>Mantiene una organización basada en comparaciones.</li>
+<li>Facilita búsquedas sin examinar necesariamente todos los registros.</li>
+<li>Permite insertar y eliminar elementos dinámicamente.</li>
+<li>Proporciona valores ordenados mediante el recorrido inorden.</li>
+<li>Facilita la organización del código utilizando clases y métodos.</li>
+</ul>
+<div style="background: #FFFBEB; border-left: 5px solid #FBBF24; padding: 18px 22px; border-radius: 8px;">La eficiencia depende de la altura del árbol. En estructuras con altura logarítmica, las operaciones fundamentales pueden realizarse en O(log n), mientras que en árboles degenerados pueden alcanzar O(n).</div>
+</section>
+<!-- COMPARACIÓN GENERAL -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">Comparación de los componentes implementados</h3>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 650px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Componente</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Responsabilidad</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>Node</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Representar un nodo.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Almacenar valores y referencias.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>BinaryTree</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Administrar la estructura.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Gestionar la raíz y las operaciones.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>insert()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Incorporar elementos.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Registro de identificadores.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>search()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Localizar valores.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Consulta de registros.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>delete()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Eliminar elementos.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Retiro de registros.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>inorder()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Recorrer nodos.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Listado ordenado.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>is_empty()</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Verificar la estructura.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Validación de árbol vacío.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- SÍNTESIS -->
+<div style="background: #1F2937; color: #ffffff; padding: 26px 30px; border-radius: 10px; margin-top: 30px;">
+<h3 style="margin: 0 0 12px; color: #fbbf24; font-size: 22px;">Síntesis</h3>
+<p>La implementación de árboles binarios en Python permite representar estructuras jerárquicas mediante clases, objetos y referencias.</p>
+<p>La clase <strong>Node</strong> representa los nodos, mientras que <strong>BinaryTree</strong> permite administrar la raíz y las operaciones fundamentales.</p>
+<p>Los árboles binarios de búsqueda organizan los valores mediante comparaciones y permiten realizar inserciones, búsquedas, eliminaciones y recorridos ordenados.</p>
+<p style="margin-bottom: 0;">Estas estructuras pueden aplicarse a la gestión de registros, el procesamiento de expresiones matemáticas, los árboles de decisión y diferentes problemas relacionados con la organización y búsqueda de información.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/4-recorridos-de-arboles-binarios.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/repaso-estructura-arbol-binario.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">Creative Commons: Reconocimiento - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

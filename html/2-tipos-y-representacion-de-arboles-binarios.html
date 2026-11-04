@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mw2q1ynh-tr4ig6szs">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>2. Tipos y representación de árboles binarios | 2. Estructura Árbol Binario</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mw2q1ynh-tr4ig6szs" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/1-fundamentos-de-los-arboles-binarios.html" class="no-ch">1. Fundamentos de los árboles binarios</a>
+</li>
+<li class="active"> <a href="../html/2-tipos-y-representacion-de-arboles-binarios.html" class="active no-ch">2. Tipos y representación de árboles binarios</a>
+</li>
+<li> <a href="../html/3-operaciones-fundamentales-de-los-arboles-binario.html" class="no-ch">3. Operaciones fundamentales de los árboles binarios</a>
+</li>
+<li> <a href="../html/4-recorridos-de-arboles-binarios.html" class="no-ch">4. Recorridos de árboles binarios</a>
+</li>
+<li> <a href="../html/5-implementacion-y-aplicaciones-de-arboles-binario.html" class="no-ch">5. Implementación y aplicaciones de árboles binarios en Python</a>
+</li>
+<li> <a href="../html/repaso-estructura-arbol-binario.html" class="no-ch">Repaso: Estructura Árbol Binario</a>
+</li>
+</ul>
+</nav><main id="page-mw2q1ynh-tr4ig6szs" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">2. Estructura Árbol Binario</p></div>
+<div class="page-header"><h1 class="page-title">2. Tipos y representación de árboles binarios</h1></div>
+</header><div id="page-content-page-mw2q1ynh-tr4ig6szs" class="page-content">
+<article id="block-mw2qfjce-t0dzsva9k" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Contenido</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1793833972138-tp1wpqhal" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1793833972138-tp1wpqhal&quot;}">
+<div class="exe-text-template">
+    <div style="font-family: Arial, Helvetica, sans-serif; color: #1f2937; line-height: 1.65; max-width: 1200px; margin: 0 auto;"><!-- ENCABEZADO PRINCIPAL -->
+<div style="background: #3B82F6; color: #ffffff; padding: 26px 30px; border-radius: 10px; margin-bottom: 24px;">
+<div style="display: inline-block; background: #FBBF24; color: #1f2937; padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 12px;">Estructuras de datos no lineales</div>
+<h2 style="margin: 0 0 10px; color: #ffffff; font-size: 29px; font-weight: 600;">Tipos y representación de árboles binarios</h2>
+<p style="margin: 0; color: #ffffff; font-size: 17px;">Identificar los diferentes tipos de árboles binarios, sus propiedades de organización y las formas de representarlos gráficamente y mediante Python.</p>
+</div>
+<!-- INTRODUCCIÓN -->
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; border-left: 6px solid #10B981; padding: 20px 24px; border-radius: 8px; margin-bottom: 30px;">
+<h3 style="color: #1f2937; margin: 0 0 12px; font-size: 22px;">Introducción</h3>
+<p>Los <strong>árboles binarios</strong> son estructuras de datos no lineales que permiten organizar información mediante relaciones jerárquicas. Cada nodo puede tener como máximo dos hijos, identificados como hijo izquierdo e hijo derecho.</p>
+<p>Aunque todos comparten esta característica, pueden presentar diferentes formas de organización dependiendo de la cantidad de nodos, su distribución y la manera en que se establecen sus conexiones.</p>
+<p>Estas diferencias permiten clasificar los árboles binarios en estructuras llenas, completas, perfectas, equilibradas y degeneradas.</p>
+<p style="margin-bottom: 0;">Además de reconocer sus tipos, es importante comprender cómo se representan mediante diagramas, nodos, referencias y listas en Python.</p>
+</div>
+<!-- 2.1 ÁRBOL LLENO -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.1 Árbol binario lleno</h3>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0; font-size: 18px;">Un <strong>árbol binario lleno</strong> es aquel en el que cada nodo tiene exactamente cero o dos hijos. Ningún nodo puede tener solamente un hijo.</p>
+</div>
+<p>Los nodos internos siempre poseen dos hijos, mientras que los nodos hoja no poseen ninguno. No es obligatorio que todos los niveles estén completamente ocupados.</p>
+<h4 style="color: #3b82f6; font-size: 19px;">Características principales</h4>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Cero o dos hijos</strong>
+<p style="margin: 8px 0 0;">Cada nodo cumple una de estas dos condiciones.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Nodos internos</strong>
+<p style="margin: 8px 0 0;">Todos poseen exactamente dos hijos.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Nodos hoja</strong>
+<p style="margin: 8px 0 0;">Pueden encontrarse en niveles diferentes.</p>
+</div>
+</div>
+<h4 style="color: #1f2937; font-size: 19px;">Representación gráfica</h4>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 360 235" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario lleno con raíz A, nodos B y C y hojas D y E" style="width: 100%; max-width: 450px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="180" y1="38" x2="95" y2="112"></line> <line x1="180" y1="38" x2="265" y2="112"></line> <line x1="95" y1="112" x2="45" y2="205"></line> <line x1="95" y1="112" x2="145" y2="205"></line> </g> <circle cx="180" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="95" cy="112" r="25" fill="#10B981"></circle> <circle cx="265" cy="112" r="25" fill="#475569"></circle> <circle cx="45" cy="205" r="24" fill="#475569"></circle> <circle cx="145" cy="205" r="24" fill="#475569"></circle> <g fill="#FFFFFF" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="180" y="45">A</text> <text x="95" y="119">B</text> <text x="265" y="119">C</text> <text x="45" y="212">D</text> <text x="145" y="212">E</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280; margin: 12px 0 0;">Figura 1. Árbol binario lleno con cinco nodos.</p>
+</div>
+<div style="background: #F9F9FB; padding: 20px 24px; border-radius: 8px;"><strong>Interpretación</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li>A tiene dos hijos: B y C.</li>
+<li>B tiene dos hijos: D y E.</li>
+<li>C, D y E son nodos hoja.</li>
+<li>No existen nodos con un solo hijo.</li>
+</ul>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 24px;">Propiedad matemática</h4>
+<p>En un árbol binario lleno no vacío, la cantidad de hojas es igual a la cantidad de nodos internos más uno.</p>
+<div style="background: #1F2937; color: #ffffff; padding: 22px; border-radius: 9px; text-align: center; margin: 18px 0;">
+<div style="font-size: 25px; font-weight: bold; color: #fbbf24;">L = I + 1</div>
+<p style="margin: 10px 0 0; color: #e5e7eb;">L = cantidad de hojas   |   I = cantidad de nodos internos</p>
+</div>
+<p>En el ejemplo existen dos nodos internos (A y B) y tres hojas (C, D y E).</p>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 16px 20px; border-radius: 8px;"><strong>Resultado:</strong> L = 2 + 1 = 3 hojas.</div>
+</section>
+<!-- 2.2 ÁRBOL COMPLETO -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.2 Árbol binario completo</h3>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0; font-size: 18px;">Un <strong>árbol binario completo</strong> es aquel en el que todos los niveles, excepto posiblemente el último, están completamente ocupados y los nodos del último nivel se distribuyen desde la izquierda hacia la derecha.</p>
+</div>
+<p>Esta distribución permite mantener una estructura compacta, aprovechando los espacios disponibles de manera ordenada.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Niveles superiores</strong>
+<p style="margin: 8px 0 0;">Todos los niveles anteriores al último están completamente ocupados.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Último nivel</strong>
+<p style="margin: 8px 0 0;">Puede contener menos nodos que su capacidad máxima.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Distribución izquierda</strong>
+<p style="margin: 8px 0 0;">Los nodos del último nivel ocupan posiciones consecutivas desde la izquierda.</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario completo de seis nodos" style="width: 100%; max-width: 460px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="190" y1="38" x2="100" y2="112"></line> <line x1="190" y1="38" x2="280" y2="112"></line> <line x1="100" y1="112" x2="45" y2="205"></line> <line x1="100" y1="112" x2="145" y2="205"></line> <line x1="280" y1="112" x2="235" y2="205"></line> </g> <circle cx="190" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="100" cy="112" r="25" fill="#10B981"></circle> <circle cx="280" cy="112" r="25" fill="#10B981"></circle> <g fill="#475569"> <circle cx="45" cy="205" r="24"></circle> <circle cx="145" cy="205" r="24"></circle> <circle cx="235" cy="205" r="24"></circle> </g> <g fill="#FFFFFF" font-family="Arial" font-weight="bold" font-size="19" text-anchor="middle"> <text x="190" y="45">A</text> <text x="100" y="119">B</text> <text x="280" y="119">C</text> <text x="45" y="212">D</text> <text x="145" y="212">E</text> <text x="235" y="212">F</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 2. Árbol binario completo con seis nodos.</p>
+</div>
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; padding: 20px 24px; border-radius: 9px;"><strong>Distribución por niveles</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li><strong>Nivel 0:</strong> A.</li>
+<li><strong>Nivel 1:</strong> B y C.</li>
+<li><strong>Nivel 2:</strong> D, E y F.</li>
+</ul>
+</div>
+<p>El último nivel no está completamente ocupado, pero los nodos se distribuyen consecutivamente desde la izquierda.</p>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px; margin-top: 18px;"><strong>Aplicación:</strong> los árboles binarios completos son utilizados frecuentemente en los montículos binarios o <em>heaps</em>, empleados para administrar información mediante prioridades.</div>
+</section>
+<!-- 2.3 ÁRBOL PERFECTO -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.3 Árbol binario perfecto</h3>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 22px 26px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0; font-size: 18px;">Un <strong>árbol binario perfecto</strong> es aquel en el que todos los nodos internos poseen exactamente dos hijos y todas las hojas se encuentran en el mismo nivel.</p>
+</div>
+<p>Esta condición produce una estructura uniforme en la que todos los niveles están completamente ocupados.</p>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 400 245" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario perfecto con siete nodos en tres niveles" style="width: 100%; max-width: 480px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="200" y1="38" x2="105" y2="115"></line> <line x1="200" y1="38" x2="295" y2="115"></line> <line x1="105" y1="115" x2="45" y2="208"></line> <line x1="105" y1="115" x2="150" y2="208"></line> <line x1="295" y1="115" x2="250" y2="208"></line> <line x1="295" y1="115" x2="355" y2="208"></line> </g> <circle cx="200" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="105" cy="115" r="25" fill="#10B981"></circle> <circle cx="295" cy="115" r="25" fill="#10B981"></circle> <g fill="#475569"> <circle cx="45" cy="208" r="23"></circle> <circle cx="150" cy="208" r="23"></circle> <circle cx="250" cy="208" r="23"></circle> <circle cx="355" cy="208" r="23"></circle> </g> <g fill="#FFFFFF" font-size="18" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="200" y="45">A</text> <text x="105" y="122">B</text> <text x="295" y="122">C</text> <text x="45" y="215">D</text> <text x="150" y="215">E</text> <text x="250" y="215">F</text> <text x="355" y="215">G</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 3. Árbol binario perfecto de altura 2.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Nivel 0</strong>
+<p style="margin: 8px 0 0;">Contiene un nodo.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Nivel 1</strong>
+<p style="margin: 8px 0 0;">Contiene dos nodos.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Nivel 2</strong>
+<p style="margin: 8px 0 0;">Contiene cuatro nodos.</p>
+</div>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Cálculo de la cantidad de nodos</h4>
+<p>La cantidad total de nodos puede calcularse utilizando la altura del árbol.</p>
+<div style="background: #1F2937; color: #ffffff; padding: 22px 26px; border-radius: 9px; text-align: center; margin: 20px 0;">
+<div style="font-size: 26px; font-weight: bold; color: #fbbf24;">N = 2<sup>h + 1</sup> - 1</div>
+<p style="color: #e5e7eb; margin: 12px 0 0;">N = cantidad total de nodos   |   h = altura del árbol</p>
+</div>
+<p>Para un árbol de altura 2:</p>
+<div style="background: #F9F9FB; padding: 18px 24px; border-radius: 8px; font-size: 18px;"><strong>N = 2<sup>2 + 1</sup> - 1 = 8 - 1 = 7 nodos</strong></div>
+<div style="background: #FFFBEB; border-left: 5px solid #FBBF24; padding: 18px 22px; border-radius: 8px; margin-top: 20px;"><strong>Importante:</strong> todo árbol binario perfecto también es lleno y completo. Sin embargo, un árbol lleno o completo no necesariamente es perfecto.</div>
+</section>
+<!-- 2.4 EQUILIBRADO Y DEGENERADO -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.4 Árbol binario equilibrado y degenerado</h3>
+<p>La distribución de los nodos influye en la altura de un árbol y en la cantidad de conexiones que deben recorrerse para acceder a determinados elementos.</p>
+<h4 style="color: #3b82f6; font-size: 20px;">Árbol binario equilibrado</h4>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-left: 6px solid #10B981; padding: 20px 24px; border-radius: 9px; margin: 16px 0;">Un <strong>árbol binario equilibrado</strong> mantiene una distribución de nodos que evita diferencias excesivas entre las alturas de sus subárboles.</div>
+<p>El equilibrio contribuye a reducir la altura de la estructura frente a un árbol muy descompensado con la misma cantidad de nodos.</p>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 18px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 360 235" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ejemplo de árbol binario equilibrado" style="width: 100%; max-width: 440px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="180" y1="38" x2="95" y2="112"></line> <line x1="180" y1="38" x2="265" y2="112"></line> <line x1="95" y1="112" x2="45" y2="205"></line> <line x1="265" y1="112" x2="315" y2="205"></line> </g> <circle cx="180" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="95" cy="112" r="25" fill="#10B981"></circle> <circle cx="265" cy="112" r="25" fill="#10B981"></circle> <circle cx="45" cy="205" r="24" fill="#475569"></circle> <circle cx="315" cy="205" r="24" fill="#475569"></circle> <g fill="#FFFFFF" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="180" y="45">A</text> <text x="95" y="119">B</text> <text x="265" y="119">C</text> <text x="45" y="212">D</text> <text x="315" y="212">E</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 4. Distribución equilibrada de nodos.</p>
+</div>
+<div style="background: #EFF6FF; padding: 18px 22px; border-radius: 8px;"><strong style="color: #1d4ed8;">Consideración:</strong> existen diferentes criterios de equilibrio. Los árboles AVL, por ejemplo, establecen reglas específicas para controlar la diferencia entre las alturas de los subárboles.</div>
+<h4 style="color: #3b82f6; font-size: 20px; margin-top: 28px;">Árbol binario degenerado</h4>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; border-left: 6px solid #FBBF24; padding: 20px 24px; border-radius: 9px; margin: 16px 0;">Un <strong>árbol binario degenerado</strong> es aquel en el que cada nodo interno tiene exactamente un hijo, formando una estructura similar a una lista enlazada.</div>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 18px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 300 315" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario degenerado hacia la derecha formado por cuatro nodos" style="width: 100%; max-width: 350px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="65" y1="38" x2="115" y2="112"></line> <line x1="115" y1="112" x2="165" y2="190"></line> <line x1="165" y1="190" x2="215" y2="268"></line> </g> <circle cx="65" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="115" cy="112" r="25" fill="#10B981"></circle> <circle cx="165" cy="190" r="25" fill="#10B981"></circle> <circle cx="215" cy="268" r="25" fill="#475569"></circle> <g fill="#FFFFFF" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="65" y="45">A</text> <text x="115" y="119">B</text> <text x="165" y="197">C</text> <text x="215" y="275">D</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 5. Árbol binario degenerado hacia la derecha.</p>
+</div>
+<p>Un árbol degenerado puede desarrollarse hacia la izquierda, hacia la derecha o alternando ambas posiciones, siempre que cada nodo interno tenga un único hijo.</p>
+<div style="background: #1F2937; color: #ffffff; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><strong style="color: #fbbf24; font-size: 24px;">h = n - 1</strong>
+<p style="margin: 10px 0 0; color: #e5e7eb;">h = altura del árbol   |   n = cantidad de nodos</p>
+</div>
+<p>Por ejemplo, un árbol degenerado con cinco nodos tiene una altura de cuatro aristas.</p>
+<div style="overflow-x: auto; margin-top: 22px;">
+<table style="width: 100%; border-collapse: collapse; min-width: 620px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Característica</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Equilibrado</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Degenerado</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Distribución</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Ramificada y controlada.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Cadena de nodos.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Altura</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Generalmente reducida.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">n - 1.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Organización</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Subárboles con alturas controladas.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Cada nodo interno tiene un hijo.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Búsqueda en BST</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(log n) si mantiene altura logarítmica.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">O(n) en el peor caso.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px; margin-top: 20px;">La altura de un árbol influye en la cantidad de nodos que pueden necesitar examinarse durante una búsqueda. En un árbol binario de búsqueda, mantener una estructura equilibrada puede mejorar significativamente su rendimiento.</div>
+</section>
+<!-- 2.5 REPRESENTACIÓN GRÁFICA -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.5 Representación gráfica de árboles binarios</h3>
+<p>La representación gráfica permite visualizar las conexiones entre nodos y comprender la forma de organización de un árbol binario.</p>
+<p>Generalmente, los nodos se representan mediante círculos o rectángulos, mientras que las conexiones entre padres e hijos se representan mediante líneas.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Nodo</strong>
+<p style="margin: 8px 0 0;">Figura que contiene un valor o identificador.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Conexión</strong>
+<p style="margin: 8px 0 0;">Línea que relaciona un padre con uno de sus hijos.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Raíz</strong>
+<p style="margin: 8px 0 0;">Nodo principal situado en la parte superior.</p>
+</div>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Subárbol izquierdo</strong>
+<p style="margin: 8px 0 0;">Estructura que comienza en el hijo izquierdo.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Subárbol derecho</strong>
+<p style="margin: 8px 0 0;">Estructura que comienza en el hijo derecho.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Hoja</strong>
+<p style="margin: 8px 0 0;">Nodo sin conexiones descendentes.</p>
+</div>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Ejemplo con valores numéricos</h4>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 20px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 400 245" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario de búsqueda con raíz 50 y valores 20, 30, 40, 60, 70 y 80" style="width: 100%; max-width: 480px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="200" y1="38" x2="105" y2="115"></line> <line x1="200" y1="38" x2="295" y2="115"></line> <line x1="105" y1="115" x2="45" y2="208"></line> <line x1="105" y1="115" x2="150" y2="208"></line> <line x1="295" y1="115" x2="250" y2="208"></line> <line x1="295" y1="115" x2="355" y2="208"></line> </g> <circle cx="200" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="105" cy="115" r="25" fill="#10B981"></circle> <circle cx="295" cy="115" r="25" fill="#10B981"></circle> <g fill="#475569"> <circle cx="45" cy="208" r="23"></circle> <circle cx="150" cy="208" r="23"></circle> <circle cx="250" cy="208" r="23"></circle> <circle cx="355" cy="208" r="23"></circle> </g> <g fill="#FFFFFF" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="200" y="44">50</text> <text x="105" y="121">30</text> <text x="295" y="121">70</text> <text x="45" y="214">20</text> <text x="150" y="214">40</text> <text x="250" y="214">60</text> <text x="355" y="214">80</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 6. Árbol binario representado mediante valores numéricos.</p>
+</div>
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; padding: 20px 24px; border-radius: 9px;"><strong>Interpretación del ejemplo</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li>La raíz almacena el valor 50.</li>
+<li>El subárbol izquierdo comienza con el nodo 30.</li>
+<li>El subárbol derecho comienza con el nodo 70.</li>
+<li>Los nodos 20, 40, 60 y 80 son hojas.</li>
+<li>Los valores menores se encuentran a la izquierda y los mayores a la derecha, según la regla de este árbol.</li>
+</ul>
+</div>
+<div style="background: #FFFBEB; border-left: 5px solid #FBBF24; padding: 18px 22px; border-radius: 8px; margin-top: 20px;"><strong>Importante:</strong> el ejemplo corresponde a un árbol binario de búsqueda o <strong>BST</strong>. No todos los árboles binarios necesitan mantener los valores ordenados de esta manera.</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 24px;">Ventajas de la representación gráfica</h4>
+<ul style="padding-left: 24px;">
+<li>Permite reconocer fácilmente la raíz y las hojas.</li>
+<li>Facilita identificar las relaciones entre padres e hijos.</li>
+<li>Ayuda a determinar niveles, profundidad y altura.</li>
+<li>Permite visualizar los subárboles izquierdo y derecho.</li>
+<li>Facilita comprender futuras operaciones y recorridos.</li>
+</ul>
+</section>
+<!-- 2.6 IMPLEMENTACIÓN EN PYTHON -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">2.6 Representación mediante nodos y referencias en Python</h3>
+<p>En Python, una forma habitual de representar árboles binarios consiste en utilizar clases y objetos. Cada nodo almacena un valor y dos referencias que permiten conectarlo con sus posibles hijos.</p>
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid #3B82F6; padding: 20px 24px; border-radius: 9px; margin-bottom: 22px;">
+<p style="margin: 0;">La <strong>representación enlazada</strong> permite relacionar nodos mediante referencias hacia otros objetos, sin necesidad de establecer previamente una cantidad fija de elementos.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Estructura de un nodo</h4>
+<div style="overflow-x: auto; margin: 18px 0;">
+<table style="width: 100%; border-collapse: collapse; min-width: 480px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Atributo</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>valor</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Almacena la información del nodo.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>izquierdo</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Referencia al hijo izquierdo.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><code>derecho</code></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Referencia al hijo derecho.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Creación de la clase Nodo</h4>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierdo = None
+        self.derecho = None</code></pre>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 20px 24px; border-radius: 9px;"><strong>Explicación del código</strong>
+<ul style="padding-left: 24px; margin-bottom: 0;">
+<li><code>class Nodo</code> define la clase que representa cada nodo.</li>
+<li><code>__init__()</code> inicializa los atributos del objeto.</li>
+<li><code>valor</code> almacena el dato recibido.</li>
+<li><code>izquierdo</code> representa la referencia al hijo izquierdo.</li>
+<li><code>derecho</code> representa la referencia al hijo derecho.</li>
+<li><code>None</code> indica la ausencia de un nodo hijo.</li>
+</ul>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Construcción de un árbol binario</h4>
+<p>Se construirá un árbol utilizando cinco valores numéricos: 50, 30, 70, 20 y 40.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code># Crear el nodo raíz
+raiz = Nodo(50)
+
+# Crear los hijos de la raíz
+raiz.izquierdo = Nodo(30)
+raiz.derecho = Nodo(70)
+
+# Crear los hijos del nodo izquierdo
+raiz.izquierdo.izquierdo = Nodo(20)
+raiz.izquierdo.derecho = Nodo(40)</code></pre>
+<div style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 18px; border-radius: 9px; text-align: center; margin: 20px 0;"><svg viewbox="0 0 350 235" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol binario construido en Python con valores 50, 30, 70, 20 y 40" style="width: 100%; max-width: 430px; height: auto;"> <g stroke="#94A3B8" stroke-width="3"> <line x1="175" y1="38" x2="95" y2="112"></line> <line x1="175" y1="38" x2="260" y2="112"></line> <line x1="95" y1="112" x2="45" y2="205"></line> <line x1="95" y1="112" x2="145" y2="205"></line> </g> <circle cx="175" cy="38" r="25" fill="#3B82F6"></circle> <circle cx="95" cy="112" r="25" fill="#10B981"></circle> <circle cx="260" cy="112" r="25" fill="#475569"></circle> <circle cx="45" cy="205" r="24" fill="#475569"></circle> <circle cx="145" cy="205" r="24" fill="#475569"></circle> <g fill="#FFFFFF" font-size="17" font-family="Arial" font-weight="bold" text-anchor="middle"> <text x="175" y="45">50</text> <text x="95" y="119">30</text> <text x="260" y="119">70</text> <text x="45" y="212">20</text> <text x="145" y="212">40</text> </g> </svg>
+<p style="font-size: 14px; color: #6b7280;">Figura 7. Árbol binario construido mediante referencias en Python.</p>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px;">Consulta de los valores</h4>
+<p>Una vez construido el árbol, sus valores pueden consultarse siguiendo las referencias existentes.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>print(&quot;Raíz:&quot;, raiz.valor)
+print(&quot;Hijo izquierdo:&quot;, raiz.izquierdo.valor)
+print(&quot;Hijo derecho:&quot;, raiz.derecho.valor)
+print(&quot;Nieto izquierdo:&quot;,
+      raiz.izquierdo.izquierdo.valor)
+print(&quot;Nieto derecho:&quot;,
+      raiz.izquierdo.derecho.valor)</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Resultado esperado</h4>
+<pre style="background: #111827; color: #d1fae5; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 20px;"><code>Raíz: 50
+Hijo izquierdo: 30
+Hijo derecho: 70
+Nieto izquierdo: 20
+Nieto derecho: 40</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 26px;">Ventajas de utilizar referencias</h4>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 20px 0;">
+<div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 18px; border-radius: 8px;"><strong style="color: #1d4ed8;">Construcción dinámica</strong>
+<p style="margin: 8px 0 0;">Permite crear nodos durante la ejecución del programa.</p>
+</div>
+<div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 18px; border-radius: 8px;"><strong style="color: #047857;">Flexibilidad</strong>
+<p style="margin: 8px 0 0;">Facilita representar árboles con diferentes formas y cantidades de nodos.</p>
+</div>
+<div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 18px; border-radius: 8px;"><strong style="color: #92400e;">Manipulación</strong>
+<p style="margin: 8px 0 0;">Permite modificar conexiones entre nodos mediante referencias.</p>
+</div>
+</div>
+<h4 style="color: #3b82f6; font-size: 19px; margin-top: 28px;">Representación mediante listas</h4>
+<p>Los árboles binarios también pueden representarse mediante listas, especialmente cuando presentan una estructura completa.</p>
+<p>Para una representación por niveles con índices que comienzan en cero, las posiciones de los hijos pueden calcularse mediante:</p>
+<div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+<div style="flex: 1 1 240px; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 22px; border-radius: 9px; text-align: center;"><strong style="color: #1d4ed8;">Hijo izquierdo</strong>
+<div style="font-size: 25px; font-weight: bold; color: #1f2937; margin-top: 12px;">2i + 1</div>
+</div>
+<div style="flex: 1 1 240px; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 22px; border-radius: 9px; text-align: center;"><strong style="color: #047857;">Hijo derecho</strong>
+<div style="font-size: 25px; font-weight: bold; color: #1f2937; margin-top: 12px;">2i + 2</div>
+</div>
+</div>
+<p>Donde <strong>i</strong> representa la posición del nodo padre dentro de la lista.</p>
+<pre style="background: #1F2937; color: #f9fafb; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 20px 0; overflow: auto; padding: 22px;"><code>arbol = [50, 30, 70, 20, 40, 60, 80]
+
+print(&quot;Raíz:&quot;, arbol[0])
+print(&quot;Hijo izquierdo:&quot;, arbol[1])
+print(&quot;Hijo derecho:&quot;, arbol[2])</code></pre>
+<h4 style="color: #3b82f6; font-size: 19px;">Resultado esperado</h4>
+<pre style="background: #111827; color: #d1fae5; font-family: Consolas, Monaco, monospace; border-radius: 9px; font-size: 14px; margin: 18px 0; overflow: auto; padding: 20px;"><code>Raíz: 50
+Hijo izquierdo: 30
+Hijo derecho: 70</code></pre>
+<div style="background: #F9F9FB; border: 1px solid #E5E7EB; padding: 20px 24px; border-radius: 9px; margin-top: 20px;">
+<h4 style="color: #1f2937; margin: 0 0 12px;">Comparación de representaciones</h4>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 550px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 12px; border: 1px solid #2563EB; text-align: left;">Característica</th>
+<th style="padding: 12px; border: 1px solid #2563EB; text-align: left;">Nodos y referencias</th>
+<th style="padding: 12px; border: 1px solid #2563EB; text-align: left;">Listas</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Organización</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Objetos conectados.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Posiciones indexadas.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Acceso a hijos</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Mediante referencias.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Mediante índices.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Flexibilidad</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Adecuada para estructuras irregulares.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Adecuada para árboles completos.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Modificación</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Modificación de referencias.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Modificación de posiciones.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="background: #ECFDF5; border-left: 5px solid #10B981; padding: 18px 22px; border-radius: 8px; margin-top: 22px;">La representación mediante nodos ofrece flexibilidad para estructuras dinámicas, mientras que las listas resultan especialmente útiles cuando los nodos ocupan posiciones consecutivas por niveles.</div>
+</section>
+<!-- COMPARACIÓN GENERAL -->
+<section style="margin-bottom: 34px;">
+<h3 style="color: #1f2937; font-size: 24px; border-bottom: 3px solid #3B82F6; padding-bottom: 9px; margin-bottom: 20px;">Comparación general de los tipos de árboles binarios</h3>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 700px;">
+<thead>
+<tr style="background: #3B82F6; color: #ffffff;">
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Tipo</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Característica principal</th>
+<th style="padding: 13px; border: 1px solid #2563EB; text-align: left;">Condición de organización</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><strong>Lleno</strong></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Cada nodo tiene cero o dos hijos.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">No admite nodos con un solo hijo.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><strong>Completo</strong></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Distribución consecutiva por niveles.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">El último nivel se ocupa desde la izquierda.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><strong>Perfecto</strong></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Todos los niveles están llenos.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Todas las hojas están al mismo nivel.</td>
+</tr>
+<tr style="background: #F9F9FB;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><strong>Equilibrado</strong></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Mantiene controladas las diferencias de alturas.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Depende del criterio de equilibrio utilizado.</td>
+</tr>
+<tr style="background: #FFFFFF;">
+<td style="padding: 12px; border: 1px solid #D1D5DB;"><strong>Degenerado</strong></td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Sus nodos forman una cadena.</td>
+<td style="padding: 12px; border: 1px solid #D1D5DB;">Cada nodo interno tiene un único hijo.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- SÍNTESIS -->
+<div style="background: #1F2937; color: #ffffff; padding: 26px 30px; border-radius: 10px; margin-top: 30px;">
+<h3 style="margin: 0 0 12px; color: #fbbf24; font-size: 22px;">Síntesis</h3>
+<p>Los árboles binarios pueden clasificarse según la distribución de sus nodos. Los árboles llenos, completos y perfectos presentan condiciones relacionadas con la cantidad de hijos y la ocupación de niveles.</p>
+<p>Los árboles equilibrados mantienen una distribución que controla su altura, mientras que los degenerados forman estructuras semejantes a listas enlazadas.</p>
+<p>La representación gráfica permite comprender las conexiones y relaciones jerárquicas. En Python, los árboles binarios pueden implementarse mediante clases, objetos y referencias, o mediante listas cuando la organización de los nodos lo permite.</p>
+<p style="margin-bottom: 0;">Estas representaciones proporcionan la base para implementar operaciones de inserción, búsqueda, eliminación y recorridos sobre árboles binarios.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/1-fundamentos-de-los-arboles-binarios.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/3-operaciones-fundamentales-de-los-arboles-binario.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">Creative Commons: Reconocimiento - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>
